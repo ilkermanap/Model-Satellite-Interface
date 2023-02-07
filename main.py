@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from data import GetData
 
 class Ui_WesTech(object):
     def setupUi(self, WesTech):
@@ -170,9 +171,10 @@ class Ui_WesTech(object):
         self.portText.setObjectName("portText")
         self.verticalLayout_28.addWidget(self.portText)
         self.portInput = QtWidgets.QComboBox(self.portBg)
-        self.portInput.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: #d6d6d6;\n"
-"border-radius: 0px;")
+        self.portInput.addItems(GetData.set_connection()[1])
+        self.portInput.setStyleSheet("color: black;\n"
+                                        "background-color: #d6d6d6;\n"
+                                        "border-radius: 0px;")
         self.portInput.setObjectName("portInput")
         self.verticalLayout_28.addWidget(self.portInput)
         self.verticalLayout_5.addWidget(self.portBg)
@@ -196,7 +198,9 @@ class Ui_WesTech(object):
         self.baudrateText.setObjectName("baudrateText")
         self.verticalLayout_24.addWidget(self.baudrateText)
         self.baudrateInput = QtWidgets.QComboBox(self.baudrateBg)
-        self.baudrateInput.setStyleSheet("color: rgb(255, 255, 255);\n"
+        self.baudrateInput.addItems(GetData.set_connection()[0])
+        self.baudrateInput.setCurrentIndex(5)
+        self.baudrateInput.setStyleSheet("color: black;\n"
 "background-color: #d6d6d6;\n"
 "border-radius: 0px;")
         self.baudrateInput.setObjectName("baudrateInput")
@@ -1137,6 +1141,10 @@ class Ui_WesTech(object):
 
         self.retranslateUi(WesTech)
         QtCore.QMetaObject.connectSlotsByName(WesTech)
+
+
+        # Clickable Buttons
+        self.baglanBtn.clicked.connect(lambda: GetData.connect(self.ipInput.text(), self.portInput.currentText(), self.baudrateInput.currentText()))
 
     def retranslateUi(self, WesTech):
         _translate = QtCore.QCoreApplication.translate
