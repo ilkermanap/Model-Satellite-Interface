@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
+from PyQt5.QtChart import QChart, QChartView, QLineSeries, QValueAxis
 import sys
 import qrc_rc
 

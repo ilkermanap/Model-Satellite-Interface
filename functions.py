@@ -39,7 +39,6 @@ class Function_UI(QObject):
             if(len(data)>1):
                 self.data_available.emit(data)
             print(data)
-            data = data
         
     # def send_data(self, data):
     #     if(self.serialPort.is_open):
