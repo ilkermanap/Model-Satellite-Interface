@@ -28,72 +28,74 @@ class MainWindow():
         self.uic.commandInput.returnPressed.connect(lambda: self.terminal('', btn=True))
 
     def update_views(self, data):
-        data = ast.literal_eval(data)
+        try:
+            data = ast.literal_eval(data)
+            #Hatalar Güncellenmesi
+            errors = data.get('HATALAR')
+            if errors.get('1') == 1:
+                self.uic.hatalar1input.setStyleSheet("background-color: red;\n"
+                                                "border-radius: 5px;\n"
+                                                "border-color: red;\n"
+                                                "border-width: 5px;")
+            else:
+                self.uic.hatalar1input.setStyleSheet("background-color: green;\n"
+                                            "border-radius: 5px;\n"
+                                            "border-color: red;\n"
+                                            "border-width: 5px;")
+            if errors.get('2') == 1:
+                self.uic.hatalar2input.setStyleSheet("background-color: red;\n"
+                                                "border-radius: 5px;\n"
+                                                "border-color: red;\n"
+                                                "border-width: 5px;")
+            else:
+                self.uic.hatalar2input.setStyleSheet("background-color: green;\n"
+                                            "border-radius: 5px;\n"
+                                            "border-color: red;\n"
+                                            "border-width: 5px;")
+            if errors.get('3') == 1:
+                self.uic.hatalar3input.setStyleSheet("background-color: red;\n"
+                                                "border-radius: 5px;\n"
+                                                "border-color: red;\n"
+                                                "border-width: 5px;")
+            else:
+                self.uic.hatalar3input.setStyleSheet("background-color: green;\n"
+                                            "border-radius: 5px;\n"
+                                            "border-color: red;\n"
+                                            "border-width: 5px;")
+            if errors.get('4') == 1:
+                self.uic.hatalar4input.setStyleSheet("background-color: red;\n"
+                                                "border-radius: 5px;\n"
+                                                "border-color: red;\n"
+                                                "border-width: 5px;")
+            else:
+                self.uic.hatalar4input.setStyleSheet("background-color: green;\n"
+                                            "border-radius: 5px;\n"
+                                            "border-color: red;\n"
+                                            "border-width: 5px;")
+            if errors.get('5') == 1:
+                self.uic.hatalar5input.setStyleSheet("background-color: red;\n"
+                                                "border-radius: 5px;\n"
+                                                "border-color: red;\n"
+                                                "border-width: 5px;")
+            else:
+                self.uic.hatalar5input.setStyleSheet("background-color: green;\n"
+                                            "border-radius: 5px;\n"
+                                            "border-color: red;\n"
+                                            "border-width: 5px;")
+            # Zaman Güncellenmesi
+            times = data.get('SAAT')
+            self.uic.saatInput.setText(f"{times.get('REALTIME')}")
+            self.uic.baslangicInput.setText(f"{times.get('START')}")
+            self.uic.ayrilmaInput.setText(f"{times.get('LEAVE')}")
+            self.uic.inisInput.setText(f"{times.get('DOWN')}")
+            self.uic.toplamInput.setText(f"{times.get('TOPLAM')}")
 
-        #Hatalar Güncellenmesi
-        errors = data.get('HATALAR')
-        if errors.get('1') == 1:
-            self.uic.hatalar1input.setStyleSheet("background-color: red;\n"
-                                            "border-radius: 5px;\n"
-                                            "border-color: red;\n"
-                                            "border-width: 5px;")
-        else:
-            self.uic.hatalar1input.setStyleSheet("background-color: green;\n"
-                                        "border-radius: 5px;\n"
-                                        "border-color: red;\n"
-                                        "border-width: 5px;")
-        if errors.get('2') == 1:
-            self.uic.hatalar2input.setStyleSheet("background-color: red;\n"
-                                            "border-radius: 5px;\n"
-                                            "border-color: red;\n"
-                                            "border-width: 5px;")
-        else:
-            self.uic.hatalar2input.setStyleSheet("background-color: green;\n"
-                                        "border-radius: 5px;\n"
-                                        "border-color: red;\n"
-                                        "border-width: 5px;")
-        if errors.get('3') == 1:
-            self.uic.hatalar3input.setStyleSheet("background-color: red;\n"
-                                            "border-radius: 5px;\n"
-                                            "border-color: red;\n"
-                                            "border-width: 5px;")
-        else:
-            self.uic.hatalar3input.setStyleSheet("background-color: green;\n"
-                                        "border-radius: 5px;\n"
-                                        "border-color: red;\n"
-                                        "border-width: 5px;")
-        if errors.get('4') == 1:
-            self.uic.hatalar4input.setStyleSheet("background-color: red;\n"
-                                            "border-radius: 5px;\n"
-                                            "border-color: red;\n"
-                                            "border-width: 5px;")
-        else:
-            self.uic.hatalar4input.setStyleSheet("background-color: green;\n"
-                                        "border-radius: 5px;\n"
-                                        "border-color: red;\n"
-                                        "border-width: 5px;")
-        if errors.get('5') == 1:
-            self.uic.hatalar5input.setStyleSheet("background-color: red;\n"
-                                            "border-radius: 5px;\n"
-                                            "border-color: red;\n"
-                                            "border-width: 5px;")
-        else:
-            self.uic.hatalar5input.setStyleSheet("background-color: green;\n"
-                                        "border-radius: 5px;\n"
-                                        "border-color: red;\n"
-                                        "border-width: 5px;")
-        # Zaman Güncellenmesi
-        times = data.get('SAAT')
-        self.uic.saatInput.setText(f"{times.get('REALTIME')}")
-        self.uic.baslangicInput.setText(f"{times.get('START')}")
-        self.uic.ayrilmaInput.setText(f"{times.get('LEAVE')}")
-        self.uic.inisInput.setText(f"{times.get('DOWN')}")
-        self.uic.toplamInput.setText(f"{times.get('TOPLAM')}")
-
-        # Gyro Güncellenmesi
-        gyro = data.get('GYRO')
-        self.uic.xInput.setText(f"{gyro.get('x')}")
-        self.uic.yInput.setText(f"{gyro.get('y')}")
+            # Gyro Güncellenmesi
+            gyro = data.get('GYRO')
+            self.uic.xInput.setText(f"{gyro.get('x')}")
+            self.uic.yInput.setText(f"{gyro.get('y')}")
+        except:
+            print('Loading...')
 
     def connect_or_disconnect(self):
         if self.uic.baslatBtn.text() == 'BAŞLAT':
